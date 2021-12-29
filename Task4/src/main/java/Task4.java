@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Task4 {
@@ -7,12 +5,13 @@ public class Task4 {
             String stringToParse;
             Integer [] arr;
             stringToParse = scannerString();
+            if (stringToParse.matches("(\\d+(\\ )?)+")) {
             arr=stringToInt(stringToParse);
-                if(Arrays.stream(arr).allMatch(Objects::nonNull)) {
                     System.out.println("Sum = " + sum(arr));
                     System.out.print("Multiply = " + multiply(arr));
+                }
+            else System.out.println("Incorrect input");
             }
-        }
 
    static String scannerString () {
         String stringToParse;
@@ -26,16 +25,10 @@ public class Task4 {
         int i = 0;
         tempString = stringToParse.split(" ");
         Integer[] intArray = new Integer[tempString.length];
-        try {
             for (String iter : tempString) {
                 intArray[i] = Integer.parseInt(iter);
                 i++;
             }
-        }
-        catch (NumberFormatException e) {
-            System.out.println("Incorrect input format");
-            Arrays.fill(intArray,null);
-        }
 
         return intArray;
 
